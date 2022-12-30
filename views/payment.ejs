@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style/main2.css">
+  <script>
+    sessionStorage.setItem('address', JSON.stringify(<% -address.address %>))
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+
+    <div class="container">
+        <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/">
+            <img src="/img/shopping-bag-icon.png" alt="site icon">
+            <span class="text-uppercase fw-lighter ms-2">Logo</span>
+        </a>
+
+        <div class="order-lg-3 nav-btns">
+            <button type="button" class="btn position-relative">
+                <a href="/cart" style="color:black">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                </a>
+            </button>
+
+            <button type="button" class="btn position-relative">
+                <a href="/login" style="color:black">
+                    <i class="fas fa-user"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                </a>
+            </button>
+            <button type="button text" class="btn position-relative">
+                <i class="fa fa-search"></i>
+
+
+            </button>
+        </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+            <ul class="navbar-nav mx-auto text-center">
+
+                <li class="nav-item px-2 py-2">
+                    <a class="nav-link text-uppercase text-dark" href="#header">home</a>
+                </li>
+                <li class="nav-item px-2 py-2">
+                    <a class="nav-link text-uppercase text-dark" href="#collection">collection</a>
+                </li>
+                <li class="nav-item px-2 py-2">
+                    <a class="nav-link text-uppercase text-dark" href="#special">specials</a>
+                </li>
+                <li class="nav-item px-2 py-2 border-0">
+                    <a class="nav-link text-uppercase text-dark" href="#popular">popular</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  <!-- end of navbar -->
+
+  <!--pay-->
+
+
+  <div class="container" style="margin-top: 130px;">
+    <form action="/checkout" method="post">
+      <h1 class="h3 mb-3">DELIVERY ADDRESS</h1>
+      <div class="row">
+        <!-- Left -->
+        <div class="col-lg-9">
+          <div class="accordion" id="accordionPayment">
+            <div class="form-floating ">
+              <input type="text" class="form-control" id="name" placeholder="" value="<%=user.fullName%>" disabled>
+              <label for="name">Name</label>
+            </div>
+
+            <div class="form-floating ">
+              <input type="tel" class="form-control" id="phone" placeholder="" value="<%=user.phone%>" maxlength="10"
+                disabled>
+              <label for="phone">Phone</label>
+            </div>
+            <div class="form-floating" style="margin-bottom: 10px;">
+              <input type="text" class="form-control" id="" placeholder="Address" value="<%=user.formatAddress%>"
+                disabled>
+              <label for="Address">Address</label>
+            </div>
+            <h3 class="h4 mb-3">PAYMENT METHOD</h3>
+
+            <!-- Credit card -->
+            <div class="accordion-item mb-3">
+              <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center border ">
+                <div class="form-check  collapsed" data-bs-toggle="collapse" data-bs-target="#collapseCC"
+                  aria-expanded="true">
+                  <input class="form-check-input" type="radio" name="paymentOption" id="payment1" value="credit"
+                    checked>
+                  <label class="form-check-label pt-1" for="payment1">
+                    Credit Card
+                  </label>
+                </div>
+                <span>
+                  <img src="/img/credit.png" alt="" width="34" height="40">
+
+                </span>
+              </h2>
+
+            </div>
+            <!-- PayPal -->
+
+            <div class="accordion-item mb-3 border">
+
+              <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
+                <div class="form-check  collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePP"
+                  aria-expanded="false">
+                  <input class="form-check-input" type="radio" name="paymentOption" id="payment2" value="cod">
+                  <label class="form-check-label pt-1" for="payment2">
+                    Cash On Delivery (COD)
+                  </label>
+                </div>
+                <span>
+                  <img src="/img/cod.png" alt="" width="34" height="40">
+
+                </span>
+              </h2>
+              <div id="collapsePP" class="accordion-collapse collapse" data-bs-parent="#accordionPayment">
+                <div class="accordion-body">
+                  <div class="px-2 col-lg-6 mb-3">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right -->
+        <div class="col-lg-3" style="margin-bottom: auto;">
+          <div class="card position-sticky top-0">
+            <div class="p-3 bg-light bg-opacity-10">
+              <h6 class="card-title mb-3">Order Summary</h6>
+              <div class="d-flex justify-content-between mb-1 small">
+                <span>Subtotal</span> <span id="sub-total">
+                  <%=orderAmount.price%>
+                </span>
+              </div>
+              <div class="d-flex justify-content-between mb-1 small">
+                <span>Shipping</span> <span id="shipping">
+                  <%=orderAmount.shippingFee%>
+                </span>
+              </div>
+              <div class="d-flex justify-content-between mb-1 small">
+                <span>Coupon</span> <span class="text-danger" id="discount"></span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between mb-4 small">
+                <span>TOTAL</span> <strong class="text-dark" id="total">
+                  <%=orderAmount.total+orderAmount.shippingFee%>
+                </strong>
+              </div>
+              <div class="form-check mb-1 small">
+                <input class="form-check-input" type="checkbox" value="" id="tnc">
+                <label class="form-check-label" for="tnc">
+                  I agree to the <a href="#">terms and conditions</a>
+                </label>
+              </div>
+           
+              <button class="btn btn-primary w-100 mt-2" type="submit">Place order</button>
+            </div>
+            <div class="pt-4">
+              <div class="accordion" id="cart-accordion">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="accordion-heading font-weight-semibold">
+                      <p>ADD PROMO CODE</p>
+                    </h3>
+                  </div>
+                  <div class="collapse show" id="promocode" data-parent="#cart-accordion">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <input class="form-control" type="text" id="cart-promocode" name="voucher"
+                          placeholder="Promo code">
+                        <p class="small mb-1" style="color:rgb(210, 69, 69);display: none;" id="alertPromo">*Invalid
+                          voucher</p>
+                        <div class="invalid-feedback">Please provide a valid promo code!</div>
+                      </div>
+                      <a class="btn btn-outline-primary btn-block " style="margin-top:10px ;"
+                        onclick="getDiscount()">Apply promo code</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="h6 pt-4 font-weight-semibold "><span class="badge badge-success mr-2"
+                style="background-color: green;">Note</span>Additional comments</h3>
+            <textarea class="form-control mb-3" id="order-comments" rows="5" name="note"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+
+
+
+
+  <!-- footer -->
+  <footer class="bg-dark py-5">
+    <div class="container">
+      <div class="row text-white g-4">
+        <div class="col-md-6 col-lg-3">
+          <a class="text-uppercase text-decoration-none brand text-white" href="index.html">Attire</a>
+          <p class="text-white text-muted mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+            mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit dolor ipsam?</p>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <h5 class="fw-light">Links</h5>
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-white text-decoration-none text-muted">
+                <i class="fas fa-chevron-right me-1"></i> Home
+              </a>
+            </li>
+            <li class="my-3">
+              <a href="#" class="text-white text-decoration-none text-muted">
+                <i class="fas fa-chevron-right me-1"></i> Collection
+              </a>
+            </li>
+            <li class="my-3">
+              <a href="#" class="text-white text-decoration-none text-muted">
+                <i class="fas fa-chevron-right me-1"></i> Blogs
+              </a>
+            </li>
+            <li class="my-3">
+              <a href="#" class="text-white text-decoration-none text-muted">
+                <i class="fas fa-chevron-right me-1"></i> About Us
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <h5 class="fw-light mb-3">Contact Us</h5>
+          <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+            <span class="me-3">
+              <i class="fas fa-map-marked-alt"></i>
+            </span>
+            <span class="fw-light">
+              Albert Street, New York, AS 756, United States of America
+            </span>
+          </div>
+          <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+            <span class="me-3">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="fw-light">
+              attire.support@gmail.com
+            </span>
+          </div>
+          <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+            <span class="me-3">
+              <i class="fas fa-phone-alt"></i>
+            </span>
+            <span class="fw-light">
+              +9786 6776 236
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <h5 class="fw-light mb-3">Follow Us</h5>
+          <div>
+            <ul class="list-unstyled d-flex">
+              <li>
+                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                  <i class="fab fa-pinterest"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- end of footer -->
+
+
+
+
+  <!-- jquery -->
+  <!-- <script src="js/jquery-3.6.0.js"></script> -->
+  <!-- isotope js -->
+  <!-- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script> -->
+  <!-- bootstrap js -->
+  <!-- <script src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> -->
+  <!-- custom js -->
+  <!-- <script src="js/script.js"></script> -->
+  <script src="/scripts/payment.js"></script>
+</body>
+
+</html>

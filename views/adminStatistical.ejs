@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Dashboard Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/style/custom.css">
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            sessionStorage.setItem('tunover',('<%-tunover%>'))
+            sessionStorage.setItem('orderStatus',('<%-orderChart%>'))
+            sessionStorage.setItem('tunoverByDay',('<%-tunoverByDay%>'))
+
+        </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/admin/dashboard">
+                <img src="/img/shopping-bag-icon.png" alt="site icon">
+                <span class="text-uppercase fw-lighter ms-2">Logo</span>
+            </a>
+
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+    <nav id="sidebar" style="margin-top:120px;">
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="/admin/dashboard" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+            </li>
+
+
+            <li class="dropdown">
+                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">aspect_ratio</i><span>Manage</span></a>
+                <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                    <li>
+                        <a href="/admin/accounts"><i class="material-icons">group</i><span>User</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/warehouse"><i class="material-icons">warehouse</i><span>Warehouse</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/orders"><i class="material-icons">filter_frames</i><span>Order</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/statistical"><i class="material-icons">poll</i><span>Chart</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/voucher"><i class="material-icons">sell</i><span>Voucher</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/admin/logout"><i class="material-icons">logout</i><span>Logout</span></a>
+            </li>
+        </ul>
+
+
+    </nav>
+
+
+
+
+    <!-- Page Content  -->
+    <div id="content" style="margin-top:110px ;">
+        <div class="main-content">
+
+            <!-- <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-warning">
+                                <span class="material-icons">equalizer</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Visits</strong></p>
+                            <h3 class="card-title">70,340</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-info">info</i>
+                                <a href="#pablo">See detailed report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-rose">
+                                <span class="material-icons">shopping_cart</span>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Orders</strong></p>
+                            <h3 class="card-title">102</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">local_offer</i> Product-wise sales
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-success">
+                                <span class="material-icons">
+                                    attach_money
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Revenue</strong></p>
+                            <h3 class="card-title">$23,100</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">date_range</i> Weekly sales
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header">
+                            <div class="icon icon-info">
+                                <span class="material-icons">
+                                    follow_the_signs
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p class="category"><strong>Followers</strong></p>
+                            <h3 class="card-title">+245</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="row ">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card" style="min-height: 485px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title" style="font-size: 30px; text-align: center;">Static Chart</h4>
+                            <div>
+                                <div class="row">
+
+                                    <div class="col-xl-8 col-lg-7">
+
+
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">Thống kê theo tháng</h6>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="chart-area">
+                                                    <canvas id="myAreaChart"></canvas>
+                                                    <script>
+                                                        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                                                        var yValues = [55, 49, 44, 24, 15];
+                                                        var barColors = ["red", "green", "blue", "orange", "brown"];
+
+                                                        new Chart("myChart", {
+                                                            type: "bar",
+                                                            data: {
+                                                                labels: xValues,
+                                                                datasets: [{
+                                                                    backgroundColor: barColors,
+                                                                    data: yValues
+                                                                }]
+                                                            },
+                                                            options: {
+                                                                legend: { display: false },
+                                                                title: {
+                                                                    display: true,
+                                                                    text: "World Wine Production 2018"
+                                                                }
+                                                            }
+                                                        });
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">Thống kê theo ngày</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-bar">
+                                                    <canvas id="myBarChart"></canvas>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-xl-4 col-lg-5">
+                                        <div class="card shadow mb-4">
+
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">Bảng thống kê đặt hàng
+                                                </h6>
+                                            </div>
+
+                                            <div class="card-body" style="margin-bottom: 150px;">
+                                                <div class="chart-pie pt-4">
+                                                    <canvas id="myPieChart"></canvas>
+                                                    <div class="text" style="margin-top: 50px; text-align: center;">
+                                                        <a
+                                                            style="background-color: #4e73df; border-radius: 5px; padding: 10px; ">Processing</a>
+
+                                                        <a
+                                                            style="background-color: #1cc88a;  border-radius: 5px; padding: 10px; ">Done</a>
+
+                                                        <a
+                                                            style="background-color: #cc3636;  border-radius: 5px; padding: 10px;">Cancel</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+   
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <script src="/scripts/bootstrap.min.js"></script>
+
+    <!-- <script src="/script/chart/chart.js/Chart.min.js"></script> -->
+    <script src="/scripts/chart/chart-area-demo.js"></script>
+    <script src="/scripts/chart/chart-pie-demo.js"></script>
+    <script src="/scripts/chart/chart-bar-demo.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
+            });
+
+            $('.more-button,.body-overlay').on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+
+        });      
+    </script>
+</body>
+
+</html>

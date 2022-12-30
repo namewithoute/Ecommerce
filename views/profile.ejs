@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/main2.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/">
+                <img src="/img/shopping-bag-icon.png" alt="site icon">
+                <span class="text-uppercase fw-lighter ms-2">Logo</span>
+            </a>
+
+            <div class="order-lg-3 nav-btns">
+                <button type="button" class="btn position-relative">
+                    <a href="/cart" style="color:black">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                    </a>
+                </button>
+
+                <button type="button" class="btn position-relative">
+                    <a href="/login" style="color:black">
+                        <i class="fas fa-user"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                    </a>
+                </button>
+                <button type="button text" class="btn position-relative">
+                    <i class="fa fa-search"></i>
+
+
+                </button>
+            </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+                <ul class="navbar-nav mx-auto text-center">
+
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#header">home</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#collection">collection</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#special">specials</a>
+                    </li>
+                    <li class="nav-item px-2 py-2 border-0">
+                        <a class="nav-link text-uppercase text-dark" href="#popular">popular</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--end of navbar-->
+
+    <div class="container-xl px-4">
+        <div class="message" id="alert">
+            <%if(typeof(message)!='undefined'){%>
+                <%if(type==1){%>
+                    <div class="alert alert-warning" role="alert">
+                        <%=message%>
+                    </div>
+
+                    <%}else if(type==0){%>
+                        <div class="alert alert-warning" role="alert">
+                            <%=message%> <a href="/profile/verify" onclick="reqVerify()"
+                                    style="text-decoration:none">CLICK HERE TO VERIFY</a>
+                        </div>
+                        <%}else{%>
+                            <div class="alert alert-success" role="alert">
+                                <%=message%>
+                            </div>
+                            <%}}%>
+
+        </div>
+        <!-- Account page navigation-->
+        <nav class="nav nav-borders">
+            <a class="nav-link active ms-0" href="/profile" target="__blank">Profile</a>
+            <a class="nav-link" href="/billing" target="__blank">Billing</a>
+            <a class="nav-link" href="/change-password" target="__blank">Security</a>
+            <a class="nav-link" href="/order" target="__blank">My Orders</a>
+
+        </nav>
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2"
+                            src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <button class="btn btn-primary" type="button">Upload new image</button>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-dark text-center" href="/logout" type="button">LOGOUT</a>
+                    </div>
+                    
+                </div>
+
+            </div>
+     
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <!-- <form action="/profile" method="post"> -->
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                <input class="form-control fc" name="firstName" id="inputFirstName" type="text"
+                                    placeholder="Enter your first name" value="<%=user.firstName%>">
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                <input class="form-control fc" name="lastName" id="inputLastName" type="text"
+                                    placeholder="Enter your last name" value="<%=user.lastName%>">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (gender )-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputGender">Gender</label>
+                                <select class="form-control fc" aria-label="Default select example" id="inputGender"
+                                    name="gender">
+                                    <option selected value="<%=user.gender%>">
+                                        <%=user.gender%>
+                                    </option>
+                                    <%if(user.gender=='male'){%>
+                                        <option value="female">female</option>
+                                        <%}else{%>
+                                            <option value="male">male</option>
+                                            <%}%>
+                                </select>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                <input class="form-control fc" id="inputBirthday" type="text"
+                                    placeholder="Enter your birthday" name="dob" value="<%=user.format%>">
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                            <input class="form-control fc" id="inputEmailAddress" type="email"
+                                placeholder="Enter your email address" name="email" value="<%=user.email%>" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputPhone">Phone number</label>
+                            <input class="form-control fc" id="inputPhone" type="text"
+                                placeholder="Enter your phone number" name="phone" value="<%=user.phone%>">
+                            <p id="phoneAlert" class="small mb-1" style="color:#DD0000"></p>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="city">City/Province</label>
+                                <!-- <input class="form-control fc" id="inputPhone" type="text"
+                                        placeholder="Enter your city" name="city" value="<%=user.address.province.name%>"> -->
+                                <select class="form-control fc" aria-label="Default select example" id="provinceSelect"
+                                    name="province" onchange="onchangeProvince()">
+                                    <option selected value="<%=user.address.province.ID%>">
+                                        <%=user.address.province.name%>
+                                    </option>
+                                </select>
+
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="district">District</label>
+                                <select class="form-control fc" aria-label="Default select example" id="districtSelect"
+                                    name="district" onchange="onchangeDistrict()">
+                                    <option selected value="<%=user.address.district.ID%>">
+                                        <%=user.address.district.name%>
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Ward</label>
+                                <select class="form-control fc" aria-label="Default select example" id="wardSelect"
+                                    name="ward">
+                                    <option selected value="<%=user.address.ward.ID%>">
+                                        <%=user.address.ward.name%>
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="house-number">Address</label>
+                                <input class="form-control fc" id="house-number" type="text"
+                                    placeholder="Enter your house number" name="specify"
+                                    value="<%=user.address.specify%>">
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="button" id="submit-btn"
+                            onclick="checkIsUpdate(event)">Save changes</button>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-dark py-5 ">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-uppercase text-decoration-none brand text-white" href="index.html">Attire</a>
+                    <p class="text-white text-muted mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Nostrum mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit dolor ipsam?</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Collection
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Blogs
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Contact Us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Albert Street, New York, AS 756, United States of America
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            attire.support@gmail.com
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            +9786 6776 236
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Follow Us</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+
+
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- custom js -->
+    <script src="/scripts/profile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/main2.css">
+    <script>
+        localStorage.setItem('cart',JSON.stringify(<%-resData%>))
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/">
+                <img src="/img/shopping-bag-icon.png" alt="site icon">
+                <span class="text-uppercase fw-lighter ms-2">Logo</span>
+            </a>
+
+            <div class="order-lg-3 nav-btns">
+                <button type="button" class="btn position-relative">
+                    <a href="/cart" style="color:black">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                    </a>
+                </button>
+
+                <button type="button" class="btn position-relative">
+                    <a href="/login" style="color:black">
+                        <i class="fas fa-user"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge bg-primary"></span>
+                    </a>
+                </button>
+                <button type="button text" class="btn position-relative">
+                    <i class="fa fa-search"></i>
+
+
+                </button>
+            </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse order-lg-1" id="navMenu">
+                <ul class="navbar-nav mx-auto text-center">
+
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#header">home</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#collection">collection</a>
+                    </li>
+                    <li class="nav-item px-2 py-2">
+                        <a class="nav-link text-uppercase text-dark" href="#special">specials</a>
+                    </li>
+                    <li class="nav-item px-2 py-2 border-0">
+                        <a class="nav-link text-uppercase text-dark" href="#popular">popular</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+
+    <div class="container pb-5 mt-n2 mt-md-n3 cart ">
+        <div class="row">
+            <div class="col-xl-9 col-md-8">
+                <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary t">
+                    <span>Products</span><a class="font-size-sm" style="text-decoration:none; color:black" href="/"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-chevron-left" style="width: 1rem; height: 1rem;">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>Continue shopping</a></h2>
+                <h3 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 "><span
+                        id="count-item"></span> <a class="btn btn-sm btn-outline-danger" href="#" onclick="clearAll()" >Clear
+                        Cart</a></h3>
+                <div id="container-item">
+
+                </div>
+                <!-- <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                    <div class="media d-block d-sm-flex  text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF0000/000000" alt="Product"></a>
+                        <div class="media-body pt-3 ">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0 name-cart"></h3>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Size:</span class="size-cart">8.5</div>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Color:</span class="color-cart">Black</div>
+                            <div class="font-size-lg text-primary pt-2 price-cart">$125.00</div>
+                        </div>
+                    </div>
+                    <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;" >
+                        <div class="form-group mb-2" >
+                            <label for="quantity1">Quantity</label>
+                            <input class="form-control form-control-sm quantity" type="number" id="quantity1" value="1" min="1" max="99">
+                        </div>
+                    
+                        <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>Remove</button>
+                    </div>
+                </div> -->
+                <!-- Item-->
+                <!-- <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                    <div class="media d-block d-sm-flex  text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/1E90FF/000000" alt="Product"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">The North Face Hoodie</a></h3>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Size:</span>XL</div>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Color:</span>Gray</div>
+                            <div class="font-size-lg text-primary pt-2">$134.00</div>
+                        </div>
+                    </div>
+                    <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
+                        <div class="form-group mb-2">
+                            <label for="quantity2">Quantity</label>
+                            <input class="form-control form-control-sm" type="number" id="quantity2" value="1" min="1" max="99">
+                        </div>         
+                        <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>Remove</button>
+                    </div>
+                </div> -->
+                <!-- Item-->
+                <!-- <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                    <div class="media d-block d-sm-flex  text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="https://via.placeholder.com/240x240/FF8C00/000000" alt="Product"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">Medicine Chameleon Sunglasses</a></h3>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Lenses:</span>Chameleon</div>
+                            <div class="font-size-sm"><span class="text-muted mr-2">Frame:</span>Gray / Black</div>
+                            <div class="font-size-lg text-primary pt-2">$47.00</div>
+                        </div>
+                    </div>
+                    <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
+                        <div class="form-group mb-2">
+                            <label for="quantity3">Quantity</label>
+                            <input class="form-control form-control-sm" type="number" id="quantity3" value="1" min="1" max="99">
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                            </svg>Remove</button>
+                    </div>
+                </div>
+             -->
+
+            </div>
+            <!-- Sidebar-->
+            <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
+                <h2 class="h6 px-4 py-3 bg-secondary text-center">Subtotal</h2>
+                <div class="h3 font-weight-semibold text-center py-3" id="sub-total-cart"></div>
+                <hr>
+                <!-- <h3 class="h6 pt-4 font-weight-semibold "><span class="badge badge-success mr-2"
+                        style="background-color: green;">Note</span>Additional comments</h3>
+                <textarea class="form-control mb-3" id="order-comments"  rows="5"></textarea> -->
+
+                <a class="btn btn-primary btn-block d-grid" onclick="checkIsEmpty()" style="padding-left: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom:-25px; " width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-credit-card mr-2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>Proceed to Checkout</a>
+                <!-- <div class="pt-4">
+                    <div class="accordion" id="cart-accordion">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="accordion-heading font-weight-semibold">
+                                    <p>ADD PROMO CODE</p>
+                                </h3>
+                            </div>
+                            <div class="collapse show" id="promocode" data-parent="#cart-accordion">
+                                <div class="card-body">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" id="cart-promocode"
+                                                placeholder="Promo code" required="">
+                                            <div class="invalid-feedback">Please provide a valid promo code!</div>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-block "
+                                            style="margin-top:10px ;" onclick="getDiscount()">Apply promo code</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!-- footer -->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-uppercase text-decoration-none brand text-white" href="index.html">Attire</a>
+                    <p class="text-white text-muted mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Nostrum mollitia quisquam veniam odit cupiditate, ullam aut voluptas velit dolor ipsam?</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Collection
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Blogs
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Contact Us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Albert Street, New York, AS 756, United States of America
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            attire.support@gmail.com
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            +9786 6776 236
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Follow Us</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- custom js -->
+    <!-- <script src = "/scripts/script.js"></script> -->
+</body>
+<script src="/scripts/cart.js"></script>
+
+</html>

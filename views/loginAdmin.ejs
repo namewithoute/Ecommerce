@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <title> LoginAdmin</title>
+
+        <link rel="stylesheet" href="/style/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="/style/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+</head>
+<body class="bg-primary ">
+    <div class="container " >
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">   
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style=" background-image:url(images/bg2.jpg)">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="form-inner">
+                                        <div class="message">
+                                            <%if(typeof(flash)!='undefined'){%>
+                                                <%if(flash.type==0){%>
+                                                    <div class="alert alert-warning" role="alert">
+                                                        <%=flash.message%>
+                                                    </div>
+                                                
+                                               <%}}%>
+                                          
+                                        </div>  
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Admin!</h1>
+                                    </div>
+                                    <form class="user" action="/admin/login" method="POST">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" name="email" aria-describedby="emailHelp"
+                                                placeholder="Enter Email ">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" name="password" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </button>
+                                        <hr>
+                                                         
+                                    </form>
+                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>   
+          <script src = "js/jquery-3.6.0.js"></script>
+          <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+          <script src = "bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+          <script src = "js/script.js"></script>
+         <script src="js/jquery-3.3.1.slim.min.js"></script>
+         <script src="js/popper.min.js"></script>
+         <script src="js/bootstrap.min.js"></script>
+         <script src="js/jquery-3.3.1.min.js"></script>
+        
+        
+        <script type="text/javascript">
+        $(document).ready(function () {
+                  $('#sidebarCollapse').on('click', function () {
+                      $('#sidebar').toggleClass('active');
+                      $('#content').toggleClass('active');
+                  });
+                  
+                   $('.more-button,.body-overlay').on('click', function () {
+                      $('#sidebar,.body-overlay').toggleClass('show-nav');
+                  });                 
+              });      
+       </script>
+</body> 
+</html>
+      

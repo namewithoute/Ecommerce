@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title> dashboard</title>
+
+    <link rel="stylesheet" href="/style/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="/style/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/admin/dashboard">
+                <img src="/img/shopping-bag-icon.png" alt="site icon">
+                <span class="text-uppercase fw-lighter ms-2">Logo</span>
+            </a>
+
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+    <nav id="sidebar" style="margin-top:120px;">
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="/admin/dashboard" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+            </li>
+
+
+            <li class="dropdown">
+                <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="material-icons">aspect_ratio</i><span>Manage</span></a>
+                <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                    <li>
+                        <a href="/admin/accounts"><i class="material-icons">group</i><span>User</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/warehouse"><i class="material-icons">warehouse</i><span>Warehouse</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/orders"><i class="material-icons">filter_frames</i><span>Order</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/statistical"><i class="material-icons">poll</i><span>Chart</span></a>
+                    </li>
+                    <li>
+                        <a href="/admin/voucher"><i class="material-icons">sell</i><span>Voucher</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/admin/logout"><i class="material-icons">logout</i><span>Logout</span></a>
+            </li>
+        </ul>
+
+
+    </nav>
+
+
+
+    <!-- Page Content  -->
+    <div id="content" style="margin-top:110px ;">
+        <div class="main-content">
+            <%const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'VND',
+              
+              });%>
+
+            <div class="row ">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card" style="min-height: 485px">
+                        <div class="card-header card-header-text">
+                            <h4 class="card-title" style="font-size: 30px; ">ORDER DETAIL</h4>
+                        </div>
+                        <div class="container">
+                            <div class="form-floating col-md-5   ">
+                                <label for="Name">Customer </label>
+                                <input type="text" class="form-control" id="name" value="<%=order.name%>" disabled>
+                            </div>
+
+                            <div class="form-floating col-md-5   ">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" id="email" value="<%=order.email%>" disabled>
+                            </div>
+
+                            <div class="form-floating col-md-5   ">
+                                <label for="Phone">Phone number </label>
+                                <input type="text" class="form-control" id="phone" value="<%=order.phone%>" disabled>
+                            </div>
+
+                            <div class="form-floating col-md-5   ">
+                                <label for="Name">Order ID </label>
+                                <input type="text" class="form-control" id="orderID" value="<%=order.orderID%>"
+                                    disabled>
+                            </div>
+                            <div class="form-row col-md-6  ">
+                                <div class="form-floating col-md-5   ">
+                                    <label for="Name">Create at </label>
+                                    <input type="text" class="form-control" id="createAt" value="<%=order.createAt%>"
+                                        disabled>
+                                </div>
+                                <div class="form-floating col-md-5   ">
+                                    <label for="Delivery">Delivery status</label>
+                                    <input type="text" class="form-control" id="deliveryStatus"
+                                        value="<%=order.status%>" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row col-md-6  ">
+                                <div class="form-floating col-md-5   ">
+                                    <label for="Payment">Payment method</label>
+                                    <input type="text" class="form-control" id="paymentMethod"
+                                        value="<%=order.paymentMethod%>" disabled>
+                                </div>
+                                <div class="form-floating col-md-5   ">
+                                    <label for="Payment">Payment status</label>
+                                    <input type="text" class="form-control" id="paymentStatus" value="<%=order.isPaid%>"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="form-floating col-md-5   ">
+                                <label for="Cancel">Order canceled </label>
+                                <input type="text" class="form-control" id="cancelOrder"
+                                    value="<%=order.isCancel ? 'Yes':'No'%>" disabled>
+                            </div>
+                            <div class="form-floating col-md-8   ">
+                                <label for="Phone">Shipping address </label>
+                                <input type="text" class="form-control" id="shippingAddress"
+                                    value="<%=order.shippingAddress%>" disabled>
+                            </div>
+
+
+
+                            <div class="row item-list">
+                                <div class="form-floating col-sm-2">
+                                    <label for="Size">Subtotal</label>
+                                    <input type="text" max="3" class="form-control" id="subtotal"
+                                        value="<%=formatter.format(order.subtotal)%>" disabled>
+                                </div>
+                                <div class="form-floating col-sm-2">
+                                    <label for="Size">Shipping Fees</label>
+                                    <input type="text" max="3" class="form-control" id="shippingFee"
+                                        value="<%=formatter.format(order.shippingFee)%>" disabled>
+                                </div>
+                                <div class="form-floating col-sm-2">
+                                    <label for="Size">Voucher code</label>
+                                    <input type="text" max="3" class="form-control" id="discount"
+                                        value="<%=(order.discount.voucherCode)%>" disabled>
+                                </div>
+                                <div class="form-floating col-sm-2">
+                                    <label for="Size">Discount value</label>
+                                    <input type="text" max="3" class="form-control" id="discount"
+                                        value="<%=(order.discount.value*100)%>%" disabled>
+                                </div>
+                                <div class="form-floating col-sm-3">
+                                    <label for="color">Total</label>
+                                    <input type="text" class="form-control" id="total" value="<%=formatter.format(order.total)%>"
+                                        disabled>
+                                </div>
+                            </div>
+
+
+                            <%order.itemList.forEach((item)=>{%>
+                                <div class="row item-list">
+                                    <div class="form-floating col-sm-1">
+                                        <label for="Size">Item ID</label>
+                                        <input type="text" max="3" class="form-control" id="size" value="<%=item.id%>"
+                                            disabled>
+                                    </div>
+                                    <div class="form-floating col-sm-8">
+                                        <label for="Size">Item name</label>
+                                        <input type="text" max="3" class="form-control" id="itemName"
+                                            value="<%=item.name%>" disabled>
+                                    </div>
+                                    <div class="form-floating col-sm-1">
+                                        <label for="Size">Size</label>
+                                        <input type="text" max="3" class="form-control" id="size" value="<%=item.size%>"
+                                            disabled>
+                                    </div>
+                                    <div class="form-floating col-sm-1">
+                                        <label for="color">Color</label>
+                                        <input type="text" class="form-control" id="color" value="<%=item.color%>"
+                                            disabled>
+                                    </div>
+                                    <div class="form-floating col-sm-1">
+                                        <label for="Quantily">Quantity</label>
+                                        <input type="number" class="form-control" id="quantity"
+                                            value="<%=item.quantity%>" disabled>
+                                    </div>
+                                </div>
+                                <%})%>
+                                    <div class="d-grid mb-4 mt-4" style="border-radius:5px ;">
+                                        <button class="btn4 btn-primary"   href="#myModal" data-toggle="modal">Edit</button>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal"
+                    class="modal fade ">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="title">Edit status order</h4>
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+
+                            </div>
+                            <div class="modal-body ">
+                                <div class="form-floating">
+                                    <label for="ID">Order ID</label>
+                                    <input type="text" class="form-control" id="id" value="<%=order.orderID%>" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sel1">Action:</label>
+                                    <select class="form-control" id="changeStatus">
+                                        <option value="" selected></option>
+                                        <option value="Cancel">Cancel order</option>
+                                        <option value="Done">Order Completion </option>
+                                        <option value="Confirm">Confirm order</option>
+                                        <option value="Packing">Packing</option>
+                                        <option value="Shipping">Delivery</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-grid mb-4 mt-4" style="border-radius:5px ;">
+                                    <button  class="btn4 btn-primary" onclick="submitEditStatus('<%=order.orderID%>')">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
+            });
+
+            $('.more-button,.body-overlay').on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+
+        });      
+    </script>
+</body>
+<script src="/scripts/order.js"></script>
+
+
+</html>
